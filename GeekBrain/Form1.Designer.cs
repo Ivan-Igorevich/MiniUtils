@@ -50,6 +50,7 @@
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.btnPingCustom = new System.Windows.Forms.Button();
             this.tbPingA4 = new System.Windows.Forms.TextBox();
@@ -114,8 +115,14 @@
             this.btnShiftRight = new System.Windows.Forms.Button();
             this.btnShiftLeft = new System.Windows.Forms.Button();
             this.tmrPing = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblMTSCaption = new System.Windows.Forms.Label();
+            this.tbMTSin = new System.Windows.Forms.TextBox();
+            this.tbMTSout = new System.Windows.Forms.TextBox();
+            this.btnMTScalc = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbCRClen)).BeginInit();
@@ -244,6 +251,7 @@
             this.pingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customToolStripMenuItem,
             this.standardToolStripMenuItem});
+            this.pingToolStripMenuItem.Enabled = false;
             this.pingToolStripMenuItem.Name = "pingToolStripMenuItem";
             this.pingToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.pingToolStripMenuItem.Text = "Ping";
@@ -289,6 +297,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage5);
@@ -303,6 +312,20 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(254, 248);
             this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.btnMTScalc);
+            this.tabPage8.Controls.Add(this.tbMTSout);
+            this.tabPage8.Controls.Add(this.tbMTSin);
+            this.tabPage8.Controls.Add(this.lblMTSCaption);
+            this.tabPage8.Controls.Add(this.label1);
+            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(246, 204);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "MtS";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // tabPage7
             // 
@@ -1019,6 +1042,54 @@
             this.tmrPing.Interval = 1200;
             this.tmrPing.Tick += new System.EventHandler(this.tmrPing_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(5, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "n*";
+            // 
+            // lblMTSCaption
+            // 
+            this.lblMTSCaption.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblMTSCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblMTSCaption.Location = new System.Drawing.Point(0, 0);
+            this.lblMTSCaption.Name = "lblMTSCaption";
+            this.lblMTSCaption.Size = new System.Drawing.Size(246, 16);
+            this.lblMTSCaption.TabIndex = 1;
+            this.lblMTSCaption.Text = "Multiply to Shift";
+            this.lblMTSCaption.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbMTSin
+            // 
+            this.tbMTSin.Location = new System.Drawing.Point(36, 38);
+            this.tbMTSin.Name = "tbMTSin";
+            this.tbMTSin.Size = new System.Drawing.Size(78, 20);
+            this.tbMTSin.TabIndex = 2;
+            this.tbMTSin.Text = "0";
+            this.tbMTSin.TextChanged += new System.EventHandler(this.tbMTSin_TextChanged);
+            // 
+            // tbMTSout
+            // 
+            this.tbMTSout.Location = new System.Drawing.Point(8, 64);
+            this.tbMTSout.Name = "tbMTSout";
+            this.tbMTSout.ReadOnly = true;
+            this.tbMTSout.Size = new System.Drawing.Size(230, 20);
+            this.tbMTSout.TabIndex = 3;
+            // 
+            // btnMTScalc
+            // 
+            this.btnMTScalc.Location = new System.Drawing.Point(120, 39);
+            this.btnMTScalc.Name = "btnMTScalc";
+            this.btnMTScalc.Size = new System.Drawing.Size(118, 23);
+            this.btnMTScalc.TabIndex = 4;
+            this.btnMTScalc.Text = "Count!";
+            this.btnMTScalc.UseVisualStyleBackColor = true;
+            this.btnMTScalc.Click += new System.EventHandler(this.btnMTScalc_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1036,6 +1107,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.tabPage6.ResumeLayout(false);
@@ -1144,6 +1217,12 @@
         private System.Windows.Forms.TextBox tbCRC9;
         private System.Windows.Forms.TextBox tbCRC8;
         private System.Windows.Forms.TextBox tbCRC7;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Label lblMTSCaption;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnMTScalc;
+        private System.Windows.Forms.TextBox tbMTSout;
+        private System.Windows.Forms.TextBox tbMTSin;
     }
 }
 

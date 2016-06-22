@@ -19,3 +19,9 @@ Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResourc
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.config
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.pdb
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.pdb
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyReference.cache
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
