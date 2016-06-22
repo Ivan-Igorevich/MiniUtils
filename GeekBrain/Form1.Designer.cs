@@ -114,6 +114,7 @@
             this.btnShiftRight = new System.Windows.Forms.Button();
             this.btnShiftLeft = new System.Windows.Forms.Button();
             this.tmrPing = new System.Windows.Forms.Timer(this.components);
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -157,20 +158,20 @@
             // 
             this.tsmiLang.Name = "tsmiLang";
             this.tsmiLang.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.tsmiLang.Size = new System.Drawing.Size(150, 22);
+            this.tsmiLang.Size = new System.Drawing.Size(152, 22);
             this.tsmiLang.Text = "Russian";
             this.tsmiLang.Click += new System.EventHandler(this.tsmiLang_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
             this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.X)));
-            this.tsmiExit.Size = new System.Drawing.Size(150, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -244,6 +245,7 @@
             this.pingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customToolStripMenuItem,
             this.standardToolStripMenuItem});
+            this.pingToolStripMenuItem.Enabled = false;
             this.pingToolStripMenuItem.Name = "pingToolStripMenuItem";
             this.pingToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.pingToolStripMenuItem.Text = "Ping";
@@ -251,7 +253,7 @@
             // customToolStripMenuItem
             // 
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customToolStripMenuItem.Text = "Custom";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.customToolStripMenuItem_Click);
             // 
@@ -260,7 +262,7 @@
             this.standardToolStripMenuItem.Checked = true;
             this.standardToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.standardToolStripMenuItem.Name = "standardToolStripMenuItem";
-            this.standardToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.standardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.standardToolStripMenuItem.Text = "Standard";
             this.standardToolStripMenuItem.Click += new System.EventHandler(this.standardToolStripMenuItem_Click);
             // 
@@ -289,6 +291,7 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage5);
@@ -314,10 +317,10 @@
             this.tabPage7.Controls.Add(this.btnPingLoc);
             this.tabPage7.Controls.Add(this.btnPing);
             this.tabPage7.Controls.Add(this.rtbPing);
-            this.tabPage7.Location = new System.Drawing.Point(4, 40);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(246, 204);
+            this.tabPage7.Size = new System.Drawing.Size(246, 222);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Ping";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -426,10 +429,10 @@
             this.tabPage6.Controls.Add(this.tbCRC2);
             this.tabPage6.Controls.Add(this.tbCRC1);
             this.tabPage6.Controls.Add(this.tbCRC0);
-            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(246, 204);
+            this.tabPage6.Size = new System.Drawing.Size(246, 222);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "CRC";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -640,10 +643,10 @@
             this.tabPage5.Controls.Add(this.btnConvDo);
             this.tabPage5.Controls.Add(this.cbConvTo);
             this.tabPage5.Controls.Add(this.cbConvFrom);
-            this.tabPage5.Location = new System.Drawing.Point(4, 40);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(246, 204);
+            this.tabPage5.Size = new System.Drawing.Size(246, 222);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Converter";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -736,10 +739,10 @@
             this.tabPage4.Controls.Add(this.lblKgPlen);
             this.tabPage4.Controls.Add(this.nudKgLength);
             this.tabPage4.Controls.Add(this.clbKgOptions);
-            this.tabPage4.Location = new System.Drawing.Point(4, 40);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(246, 204);
+            this.tabPage4.Size = new System.Drawing.Size(246, 222);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Keygen";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1019,6 +1022,15 @@
             this.tmrPing.Interval = 1200;
             this.tmrPing.Tick += new System.EventHandler(this.tmrPing_Tick);
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(246, 204);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "MtS";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1144,6 +1156,7 @@
         private System.Windows.Forms.TextBox tbCRC9;
         private System.Windows.Forms.TextBox tbCRC8;
         private System.Windows.Forms.TextBox tbCRC7;
+        private System.Windows.Forms.TabPage tabPage8;
     }
 }
 
