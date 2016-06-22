@@ -157,7 +157,7 @@ namespace GeekBrain
                 lblMTSCaption.Text = "Умножение в Сдвиг";
                 tabPage8.Text = "УвС";
                 btnMTScalc.Text = "Рассчитать!";
-
+                lblMTSfooter.Text = "Каждый разработчик знает, что операции сдвига гораздо быстрее, чем умножения. Эта утилита поможет вам пересчитать умножения в битовые сдвиги.";
             }
             else
             {
@@ -249,6 +249,7 @@ namespace GeekBrain
                 lblMTSCaption.Text = "Multiply to Shift";
                 tabPage8.Text = "MtS";
                 btnMTScalc.Text = "Count!";
+                lblMTSfooter.Text = "Every developer knows, that shift operations are way faster, than multiplications. This little utility helps you to recount multiplications into shift operations.";
             }
         }
 
