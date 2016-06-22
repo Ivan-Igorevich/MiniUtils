@@ -16,3 +16,6 @@ Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyR
 Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
 Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
 Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.config
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.pdb
