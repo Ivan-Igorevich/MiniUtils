@@ -24,7 +24,7 @@ namespace GeekBrain
         string pingFailTO = "Ping timeout\n";
         string pingFailNA = "Network unreachable\n";
         string crcMsgCaption = "Input error";
-        string crcMsgBody = "Only numbers allowed, dropping!";
+        string crcMsgBody = "Incorrect number!";
         string pingMsgBody = "You can't ping zeroes!";
         string pingMsgCaption = "Wrong IP Address";
         
@@ -146,7 +146,7 @@ namespace GeekBrain
                 pingRespond = "Адрес: {0}, Время={1}мс, TTL={2}\n";
                 pingFailTO = "Время истекло\n";
                 pingFailNA = "Сеть недоступна\n";
-                crcMsgBody = "Считаем только числа! Обнуляю";
+                crcMsgBody = "Неверный ввод числа!";
                 crcMsgCaption = "Ошибка ввода";
                 btnPingCustom.Text = "Пнуть!";
                 pingToolStripMenuItem.Text = "Пинг";
@@ -154,6 +154,10 @@ namespace GeekBrain
                 standardToolStripMenuItem.Text = "Стандартный";
                 pingMsgBody = "Нельзя пнуть нули!";
                 pingMsgCaption = "Неверный адрес";
+                lblMTSCaption.Text = "Умножение в Сдвиг";
+                tabPage8.Text = "УвС";
+                btnMTScalc.Text = "Рассчитать!";
+
             }
             else
             {
@@ -234,7 +238,7 @@ namespace GeekBrain
                 pingRespond = "Address: {0}, Time={1}ms, TTL={2}\n";
                 pingFailTO = "Ping timeout\n";
                 pingFailNA = "Network unreachable\n";
-                crcMsgBody = "Only numbers allowed, dropping!";
+                crcMsgBody = "Incorrect number!";
                 crcMsgCaption = "Input error";
                 btnPingCustom.Text = "Ping It!";
                 pingToolStripMenuItem.Text = "Ping";
@@ -242,6 +246,9 @@ namespace GeekBrain
                 standardToolStripMenuItem.Text = "Standard";
                 pingMsgBody = "You can't ping zeroes!";
                 pingMsgCaption = "Wrong IP Address";
+                lblMTSCaption.Text = "Multiply to Shift";
+                tabPage8.Text = "MtS";
+                btnMTScalc.Text = "Count!";
             }
         }
 
@@ -1425,6 +1432,76 @@ namespace GeekBrain
                 tbCRC13.Text = "0";
             }
 
+        }
+
+        private void tbMTSin_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMTSin.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMTSin.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMTSin.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMTSin.Text = "0";
+            }
+
+            if (a > 16777215)
+            {
+                tbMTSin.Text = "0";
+            }
+        }
+
+        public int calcshift(int input)
+        {
+            int output = 0;
+            int i = 0;
+            while (input >= (1 << i))
+            {
+                i++;
+                output = i - 1;
+            }
+            return output;
+        }
+
+        private void btnMTScalc_Click(object sender, EventArgs e)
+        {
+            int shiftvalue = 0; 
+            int start = 0;
+            int shifted = 0;
+            int mod = 0;
+            tbMTSout.Text = "";
+            start = Convert.ToInt32(tbMTSin.Text);
+            mod = start;
+            if (start < 2) return;
+
+            do
+            {
+                shiftvalue = calcshift(mod);
+                mod = mod - (1 << shiftvalue);
+                if (mod > 1)
+                {
+                    tbMTSout.AppendText("n<<" + shiftvalue.ToString() + " + ");
+                } else {
+                    tbMTSout.AppendText("n<<" + shiftvalue.ToString());
+                }
+                //tbMTSout.AppendText("n<<" + shiftvalue.ToString() + " + ");
+            } while (mod > 1);
+            if (mod == 1)
+            {
+                tbMTSout.AppendText(" + n");
+            }
+            Clipboard.SetText(tbMTSout.Text);
         }
     }
 }
