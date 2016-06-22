@@ -1,0 +1,18 @@
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\bin\Debug\GeekBrain.exe.config
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\bin\Debug\GeekBrain.exe
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\bin\Debug\GeekBrain.pdb
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyReference.cache
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.exe
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.pdb
+D:\FTP\Ovchinnikov\Pieces\WinTools\CSharp\GeekBrain\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\bin\Debug\GeekBrain.exe.config
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.exe
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.pdb
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\bin\Debug\GeekBrain.exe
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\bin\Debug\GeekBrain.pdb
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyReference.cache
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
+Z:\Dropbox\SDU MT\GeekBrain\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
