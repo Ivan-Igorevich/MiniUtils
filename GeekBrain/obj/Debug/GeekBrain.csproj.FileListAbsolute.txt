@@ -25,3 +25,12 @@ C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.cs
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
+C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.config
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.pdb
+C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe
+C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.pdb
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyReference.cache
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache

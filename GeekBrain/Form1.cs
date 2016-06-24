@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
@@ -1503,6 +1504,46 @@ namespace GeekBrain
                 tbMTSout.AppendText(" + n");
             }
             Clipboard.SetText(tbMTSout.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string devkey = "f551e54a1945de2cd8725def17729ca3";
+//fix it//            byte[] post = Convert.ToByte("api_option=paste&api_user_key=" + "&api_paste_private=0" + "&api_paste_name=NEWp" + "&api_paste_expire_date=10M" + "&api_paste_format=txt" + "&api_dev_key=f551e54a1945de2cd8725def17729ca3");
+            // Create a request using a URL that can receive a post. 
+            WebRequest request = WebRequest.Create("http://pastebin.com/api/api_post.php");
+            // Set the Method property of the request to POST.
+            request.Method = "POST";
+            // Create POST data and convert it to a byte array.
+            string postData = "This is a test that posts this string to a Web server.";
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            // Set the ContentType property of the WebRequest.
+            request.ContentType = "application/x-www-form-urlencoded";
+            // Set the ContentLength property of the WebRequest.
+            request.ContentLength = byteArray.Length;
+            // Get the request stream.
+            Stream dataStream = request.GetRequestStream();
+            // Write the data to the request stream.
+            dataStream.Write(post, 0, post.Length);
+            // Close the Stream object.
+            dataStream.Close();
+            // Get the response.
+            WebResponse response = request.GetResponse();
+            // Display the status.
+            richTextBox1.AppendText(((HttpWebResponse)response).StatusDescription+"\n\n\n");
+            // Get the stream containing content returned by the server.
+            dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            string responseFromServer = reader.ReadToEnd();
+            // Display the content.
+            richTextBox1.AppendText(responseFromServer);
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
         }
     }
 }
