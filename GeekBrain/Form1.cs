@@ -1508,15 +1508,14 @@ namespace GeekBrain
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string devkey = "f551e54a1945de2cd8725def17729ca3";
-//fix it//            byte[] post = Convert.ToByte("api_option=paste&api_user_key=" + "&api_paste_private=0" + "&api_paste_name=NEWp" + "&api_paste_expire_date=10M" + "&api_paste_format=txt" + "&api_dev_key=f551e54a1945de2cd8725def17729ca3");
+//            string devkey = "f551e54a1945de2cd8725def17729ca3";
+            string post = "api_option=paste&api_paste_code=\"This is a test that posts this string to a Web server.\"&api_paste_name=NEWp&api_paste_expire_date=10M&api_paste_format=text&api_dev_key=f551e54a1945de2cd8725def17729ca3";
             // Create a request using a URL that can receive a post. 
             WebRequest request = WebRequest.Create("http://pastebin.com/api/api_post.php");
             // Set the Method property of the request to POST.
             request.Method = "POST";
             // Create POST data and convert it to a byte array.
-            string postData = "This is a test that posts this string to a Web server.";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            byte[] byteArray = Encoding.UTF8.GetBytes(post);
             // Set the ContentType property of the WebRequest.
             request.ContentType = "application/x-www-form-urlencoded";
             // Set the ContentLength property of the WebRequest.
@@ -1524,7 +1523,7 @@ namespace GeekBrain
             // Get the request stream.
             Stream dataStream = request.GetRequestStream();
             // Write the data to the request stream.
-            dataStream.Write(post, 0, post.Length);
+            dataStream.Write(byteArray, 0, byteArray.Length);
             // Close the Stream object.
             dataStream.Close();
             // Get the response.
