@@ -1506,10 +1506,11 @@ namespace GeekBrain
             Clipboard.SetText(tbMTSout.Text);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void pastebinItToolStripMenuItem_Click(object sender, EventArgs e)
         {
-//            string devkey = "f551e54a1945de2cd8725def17729ca3";
-            string post = "api_option=paste&api_paste_code=\"This is a test that posts this string to a Web server.\"&api_paste_name=NEWp&api_paste_expire_date=10M&api_paste_format=text&api_dev_key=f551e54a1945de2cd8725def17729ca3";
+            //            string devkey = "f551e54a1945de2cd8725def17729ca3";
+            string post = "api_option=paste&api_paste_code=\"" + rtbNpOut.Text + "\"&api_paste_name=\"Awesome new Paste\"&api_paste_expire_date=10M&api_paste_format=text&api_dev_key=f551e54a1945de2cd8725def17729ca3";
             // Create a request using a URL that can receive a post. 
             WebRequest request = WebRequest.Create("http://pastebin.com/api/api_post.php");
             // Set the Method property of the request to POST.
@@ -1529,7 +1530,7 @@ namespace GeekBrain
             // Get the response.
             WebResponse response = request.GetResponse();
             // Display the status.
-            richTextBox1.AppendText(((HttpWebResponse)response).StatusDescription+"\n\n\n");
+            //richTextBox1.AppendText(((HttpWebResponse)response).StatusDescription + "\n\n\n");
             // Get the stream containing content returned by the server.
             dataStream = response.GetResponseStream();
             // Open the stream using a StreamReader for easy access.
@@ -1537,12 +1538,13 @@ namespace GeekBrain
             // Read the content.
             string responseFromServer = reader.ReadToEnd();
             // Display the content.
-            richTextBox1.AppendText(responseFromServer);
+            //richTextBox1.AppendText(responseFromServer);
+            MessageBox.Show(responseFromServer, "Your paste is now located at");
+            Clipboard.SetText(responseFromServer);
             // Clean up the streams.
             reader.Close();
             dataStream.Close();
             response.Close();
-
         }
     }
 }
