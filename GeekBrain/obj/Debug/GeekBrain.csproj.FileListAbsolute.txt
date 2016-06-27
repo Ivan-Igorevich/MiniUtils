@@ -34,3 +34,7 @@ C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyRef
 C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
 C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
 C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
+C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.manifest
+C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.application
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe.manifest
+C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.application

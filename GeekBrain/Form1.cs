@@ -28,7 +28,19 @@ namespace GeekBrain
         string crcMsgBody = "Incorrect number!";
         string pingMsgBody = "You can't ping zeroes!";
         string pingMsgCaption = "Wrong IP Address";
-        
+        string msgAbout = "Stay awile and think: what is this all about?";
+        string cptAbout = "A minute of pseudo-philosophy";
+        string msgQmark = "Wayne Harry Shepard. May 26th, 2016.";
+        string cptQmark = "A minute of narcissism";
+        string msgNsave = "Error writing to file";
+        string cptNsave = "Something went wrong!";
+        string msgNload = "Error loading file";
+        string cptNload = "Something went wrong!";
+        string msgKG = "Can't create an empty password";
+        string cptKG = "Something went wrong!";
+        string msgNpaste = "Check your internet connection, please";
+        string cptNpaste = "Can't access Pastebin!";
+
         public MainForm()
         {
             InitializeComponent();
@@ -55,14 +67,7 @@ namespace GeekBrain
 
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
-            if (!RuEng)
-            {
-                MessageBox.Show("Остановись и подумай: зачем это вообще нужно?", "Минутка псевдо-философии", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                MessageBox.Show("Stay awile and think: what is this all about?", "A minute of pseudo-philosophy", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
+            MessageBox.Show(msgAbout, cptAbout, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void tsmiLang_Click(object sender, EventArgs e)
@@ -159,6 +164,19 @@ namespace GeekBrain
                 tabPage8.Text = "УвС";
                 btnMTScalc.Text = "Рассчитать!";
                 lblMTSfooter.Text = "Каждый разработчик знает, что операции сдвига гораздо быстрее, чем умножения. Эта утилита поможет вам пересчитать умножения в битовые сдвиги.";
+                msgAbout = "Остановись и подумай: зачем это вообще нужно?";
+                cptAbout = "Минутка псевдо-философии";
+                msgQmark = "Овчинников Иван Игоревич, 26 мая 2016г.";
+                cptQmark = "Минутка самолюбования";
+                msgNsave = "Произошёл сбой при попытке записи в файл";
+                cptNsave = "Что-то пошло не так!";
+                msgNload = "Произошёл сбой при попытке записи в файл";
+                cptNload = "Что-то пошло не так!";
+                msgKG = "Не могу создать пустой пароль";
+                cptKG = "Что-то пошло не так!";
+                msgNpaste = "Проверьте наличие подключения к интернету, пожалуйста!";
+                cptNpaste = "Не могу достучаться до Pastebin!";
+
             }
             else
             {
@@ -251,6 +269,18 @@ namespace GeekBrain
                 tabPage8.Text = "MtS";
                 btnMTScalc.Text = "Count!";
                 lblMTSfooter.Text = "Every developer knows, that shift operations are way faster, than multiplications. This little utility helps you to recount multiplications into shift operations.";
+                msgAbout = "Stay awile and think: what is this all about?";
+                cptAbout = "A minute of pseudo-philosophy";
+                msgQmark = "Wayne Harry Shepard. May 26th, 2016.";
+                cptQmark = "A minute of narcissism";
+                msgNsave = "Error writing to file";
+                cptNsave = "Something went wrong!";
+                msgNload = "Error loading file";
+                cptNload = "Something went wrong!";
+                msgKG = "Can't create an empty password";
+                cptKG = "Something went wrong!";
+                msgNpaste = "Check your internet connection, please";
+                cptNpaste = "Can't access Pastebin!";
             }
         }
 
@@ -375,14 +405,7 @@ namespace GeekBrain
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            if (!RuEng)
-            {
-                MessageBox.Show("Овчинников Иван Игоревич, 26 мая 2016г.", "Минутка самолюбования", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
-                MessageBox.Show("Wayne Harry Shepard. May 26th, 2016.", "A minute of narcissism", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
+            MessageBox.Show(msgQmark, cptQmark, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void tsmiNpSave_Click(object sender, EventArgs e)
@@ -393,14 +416,7 @@ namespace GeekBrain
             }
             catch
             {
-                if (!RuEng)
-                {
-                    MessageBox.Show("Ошибка при сохранении", "Что-то пошло не так", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                else
-                {
-                    MessageBox.Show("Error saving file", "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
+                MessageBox.Show(msgNsave, cptNsave, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
@@ -412,14 +428,7 @@ namespace GeekBrain
             }
             catch
             {
-                if (!RuEng)
-                {
-                    MessageBox.Show("Ошибка при загрузке", "Что-то пошло не так", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                else
-                {
-                    MessageBox.Show("Error loading file", "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
+                MessageBox.Show(msgNload, cptNload, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
 
         }
@@ -433,14 +442,7 @@ namespace GeekBrain
         {
             if (clbKgOptions.CheckedItems.Count == 0)
             {
-                if (!RuEng)
-                {
-                    MessageBox.Show("Не могу создать пустой пароль", "Что-то пошло не так", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                else
-                {
-                    MessageBox.Show("Can't create an empty password", "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
+                MessageBox.Show(msgKG, cptKG, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
             String password = "";
@@ -1480,7 +1482,6 @@ namespace GeekBrain
         {
             int shiftvalue = 0; 
             int start = 0;
-            int shifted = 0;
             int mod = 0;
             tbMTSout.Text = "";
             start = Convert.ToInt32(tbMTSin.Text);
@@ -1522,6 +1523,16 @@ namespace GeekBrain
             // Set the ContentLength property of the WebRequest.
             request.ContentLength = byteArray.Length;
             // Get the request stream.
+            try
+            {
+                request.GetRequestStream();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(msgNpaste, cptNpaste, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+                throw;
+            }
             Stream dataStream = request.GetRequestStream();
             // Write the data to the request stream.
             dataStream.Write(byteArray, 0, byteArray.Length);
@@ -1530,7 +1541,7 @@ namespace GeekBrain
             // Get the response.
             WebResponse response = request.GetResponse();
             // Display the status.
-            //richTextBox1.AppendText(((HttpWebResponse)response).StatusDescription + "\n\n\n");
+          //rtbNpOut.AppendText(((HttpWebResponse)response).StatusDescription + "\n\n\n");
             // Get the stream containing content returned by the server.
             dataStream = response.GetResponseStream();
             // Open the stream using a StreamReader for easy access.
