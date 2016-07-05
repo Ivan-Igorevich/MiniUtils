@@ -418,6 +418,7 @@
             this.tbMAVmsgid.Name = "tbMAVmsgid";
             this.tbMAVmsgid.Size = new System.Drawing.Size(52, 20);
             this.tbMAVmsgid.TabIndex = 13;
+            this.tbMAVmsgid.TextChanged += new System.EventHandler(this.tbMAVmsgid_TextChanged);
             // 
             // tbMAVperid
             // 
@@ -425,6 +426,7 @@
             this.tbMAVperid.Name = "tbMAVperid";
             this.tbMAVperid.Size = new System.Drawing.Size(52, 20);
             this.tbMAVperid.TabIndex = 12;
+            this.tbMAVperid.TextChanged += new System.EventHandler(this.tbMAVperid_TextChanged);
             // 
             // lblMAVsysid
             // 
@@ -478,6 +480,7 @@
             this.tbMAVsysid.Name = "tbMAVsysid";
             this.tbMAVsysid.Size = new System.Drawing.Size(52, 20);
             this.tbMAVsysid.TabIndex = 4;
+            this.tbMAVsysid.TextChanged += new System.EventHandler(this.tbMAVsysid_TextChanged);
             // 
             // tbMAVcrc
             // 
@@ -512,6 +515,7 @@
             this.tbMAVdat.Name = "tbMAVdat";
             this.tbMAVdat.Size = new System.Drawing.Size(100, 166);
             this.tbMAVdat.TabIndex = 0;
+            this.tbMAVdat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMAVdat_KeyPress);
             // 
             // tabPage8
             // 

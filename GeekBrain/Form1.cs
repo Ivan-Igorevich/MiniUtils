@@ -15,6 +15,7 @@ namespace GeekBrain
     public partial class MainForm : Form
     {
         bool RuEng = true;
+        int mavCRC;
         Random rnd;
         char[] SpecialChars = new char[] {'~','`','!','@','#','$','%','^','&','*','(',')','-','_','=','+',';',':','"','/','?','.','>','<'};
         Dictionary<string, double> metric;
@@ -1574,15 +1575,197 @@ namespace GeekBrain
 
         private void btnMAVcalc_Click(object sender, EventArgs e)
         {
-            //1. FE
-            //2. whole packet length
-            //3. msg num
-            //4. system id
-            //5. peripheral id
-            //6. msg id
-            //7. msg data (up to 255 bytes)
+            int[] mavArray = new int[511];
+            int mavArrPtr = 0;
+            int[] datArray = new int[511];
+            string[] datTemp = new string[255];
+            int[] MAVlinkMagic = new int[256] {
+                50, 124, 137, 0, 237, 217, 104, 119,
+                0, 0, 0, 89, 0, 0, 0, 0,
+                0, 0, 0, 0, 214, 159, 220, 168,
+                24, 23, 170, 144, 67, 115, 39, 246,
+                185, 104, 237, 244, 222, 212, 9, 254,
+                230, 28, 28, 132, 221, 232, 11, 153,
+                41, 39, 214, 223, 141, 33, 15, 3,
+                100, 24, 239, 238, 30, 240, 183, 130,
+                130, 118, 148, 21, 0, 243, 124, 0,
+                0, 0, 20, 0, 152, 143, 0, 0,
+                127, 106, 0, 0, 0, 0, 0, 0,
+                0, 231, 183, 63, 54, 0, 0, 0,
+                0, 0, 0, 0, 175, 102, 158, 208,
+                56, 93, 211, 108, 32, 185, 235, 93,
+                124, 124, 119, 4, 76, 128, 56, 116,
+                134, 237, 203, 250, 87, 203, 220, 0,
+                0, 0, 29, 223, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 177, 241, 15, 134, 219,
+                208, 188, 84, 22, 19, 21, 134, 0,
+                78, 68, 189, 127, 111, 21, 21, 144,
+                1, 234, 73, 181, 22, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 204, 49, 170, 44, 83, 46, 0
+            };
+
+            datTemp = tbMAVdat.Text.Split('\n');
+            for (int i = 0; i < datTemp.Length; i++)
+            {
+                datArray[i] = Convert.ToInt32(datTemp[i]);
+            }
+
+            mavArray[0] = 0xFE;         //1. FE
+            mavArray[2] = Convert.ToInt32(nudMAVnum.Value); //3. msg num
+            mavArray[3] = Convert.ToInt32(tbMAVsysid.Text); //4. system id
+            mavArray[4] = Convert.ToInt32(tbMAVperid.Text); //5. peripheral id
+            mavArray[5] = Convert.ToInt32(tbMAVmsgid.Text); //6. msg id (MAGIC NUMBER INDEX)
+
+            for (int i = 0; i < datArray.Length; i++)
+            {
+                mavArray[6 + i] = datArray[i]; //7. msg data (up to 255 bytes)
+                mavArrPtr = 6 + i;
+            }
+
+            mavArray[1] = mavArray.Length;      //2. whole packet length (excluding FE marker)
+
+            for (int i = 0; i < mavArray.Length; i++)
+            {
+                updateMAVcrc(mavArray[i]);
+            }
+            finishMAVcrc(mavArray[5]);
+            mavArray[mavArrPtr] = mavCRC;
+            tbMAVcrc.Text = mavArray[mavArrPtr].ToString();
             //8. mavlink crc
+
+
         }
 
+        public void updateMAVcrc(int data)
+        {
+            int tmp;
+            data = data & 0xFF; //cast because we want an unsigned type
+            tmp = data ^ (mavCRC & 0xFF);// & 0xFF);
+            tmp ^= (tmp << 4) & 0xFF;
+            mavCRC = ((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF);
+        }
+        public void finishMAVcrc(int magic)
+        {
+            updateMAVcrc(magic);
+        }
+
+        private void tbMAVsysid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVsysid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVsysid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVsysid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVsysid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVsysid.Text = "0";
+            }
+        }
+
+        private void tbMAVperid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVperid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVperid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVperid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVperid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVperid.Text = "0";
+            }
+        }
+
+        private void tbMAVmsgid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVmsgid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVmsgid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVmsgid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVmsgid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVmsgid.Text = "0";
+            }
+        }
+
+        private void tbMAVdat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int a;
+            try
+            {
+                a = Convert.ToInt16(e.KeyChar.ToString());
+                tbMAVdat.AppendText(a.ToString());
+            }
+            catch (Exception)
+            {
+                a = 0;
+                if (e.KeyChar.ToString() != "\r")
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                }
+                else
+                {
+                    tbMAVdat.AppendText("\r\n");
+                }
+            }
+
+            e.Handled = true;
+
+        }
     }
 }
