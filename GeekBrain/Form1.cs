@@ -40,6 +40,8 @@ namespace GeekBrain
         string cptKG = "Something went wrong!";
         string msgNpaste = "Check your internet connection, please";
         string cptNpaste = "Can't access Pastebin!";
+        string str_tt_btnMAVcalc = "Be sure to use properly tuned list of data\n and make a MAVlink byte sequence";
+        string str_tt_tbMAVdat = "To fill this list:\n - be sure to use numbers;\n - be sure numbers are less than 256;\n - be sure to enter one number per row;\n - again be sure to use numbers only!";
 
         public MainForm()
         {
@@ -58,6 +60,18 @@ namespace GeekBrain
             metric.Add("км", 1000000);
             metric.Add("mil", 1609344);
             metric.Add("мили", 1609344);
+
+            ToolTip ttMain = new ToolTip();
+            // Set up the delays for the ToolTip.
+            ttMain.AutoPopDelay = 5000;
+            ttMain.InitialDelay = 500;
+            ttMain.ReshowDelay = 100;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            ttMain.ShowAlways = true;
+
+            // Set up the ToolTip texts here.
+            ttMain.SetToolTip(this.btnMAVcalc, str_tt_btnMAVcalc);
+            ttMain.SetToolTip(this.tbMAVdat, str_tt_tbMAVdat);
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -1557,5 +1571,18 @@ namespace GeekBrain
             dataStream.Close();
             response.Close();
         }
+
+        private void btnMAVcalc_Click(object sender, EventArgs e)
+        {
+            //1. FE
+            //2. whole packet length
+            //3. msg num
+            //4. system id
+            //5. peripheral id
+            //6. msg id
+            //7. msg data (up to 255 bytes)
+            //8. mavlink crc
+        }
+
     }
 }

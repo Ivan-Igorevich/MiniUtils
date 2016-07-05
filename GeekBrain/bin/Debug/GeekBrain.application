@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="GeekBrain.exe.manifest" size="3939">
+    <dependentAssembly dependencyType="install" codebase="GeekBrain.exe.manifest" size="4147">
       <assemblyIdentity name="GeekBrain.exe" version="4.2.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>a4Ya65dnQBRVSgejIUO9xPn+qmjkYN6b4yzqhcRkkgQ=</dsig:DigestValue>
+        <dsig:DigestValue>ZSV7y4aL+C2rIP3qPqygSiznNcFxAnm1di7mLvgrhqo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
