@@ -1577,6 +1577,7 @@ namespace GeekBrain
         {
             int[] mavArray = new int[511];
             int mavArrPtr = 0;
+            int usedLength = 0;
             int[] datArray = new int[511];
             string[] datTemp = new string[255];
             int[] MAVlinkMagic = new int[256] {
@@ -1613,35 +1614,84 @@ namespace GeekBrain
                 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 204, 49, 170, 44, 83, 46, 0
             };
-
-            datTemp = tbMAVdat.Text.Split('\n');
-            for (int i = 0; i < datTemp.Length; i++)
+            if (tbMAVdat.Text != "")
             {
-                datArray[i] = Convert.ToInt32(datTemp[i]);
+                datTemp = tbMAVdat.Text.Split('\n');
+            }
+            if (datTemp[datTemp.Length-1]=="")
+            {
+                usedLength = datTemp.Length - 1;
+            }
+            else
+            {
+                usedLength = datTemp.Length;
+            }
+            for (int i = 0; i < usedLength; i++)
+            {
+                try
+                {
+                    datArray[i] = Convert.ToInt32(datTemp[i]);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                }
             }
 
-            mavArray[0] = 0xFE;         //1. FE
-            mavArray[2] = Convert.ToInt32(nudMAVnum.Value); //3. msg num
-            mavArray[3] = Convert.ToInt32(tbMAVsysid.Text); //4. system id
-            mavArray[4] = Convert.ToInt32(tbMAVperid.Text); //5. peripheral id
-            mavArray[5] = Convert.ToInt32(tbMAVmsgid.Text); //6. msg id (MAGIC NUMBER INDEX)
+            try
+            {
+                mavArray[0] = 0xFE;         //1. FE
+                mavArray[2] = Convert.ToInt32(nudMAVnum.Value); //3. msg num
+                mavArray[3] = Convert.ToInt32(tbMAVsysid.Text); //4. system id
+                mavArray[4] = Convert.ToInt32(tbMAVperid.Text); //5. peripheral id
+                mavArray[5] = Convert.ToInt32(tbMAVmsgid.Text); //6. msg id (MAGIC NUMBER INDEX)
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
 
-            for (int i = 0; i < datArray.Length; i++)
+            for (int i = 0; i < usedLength; i++)
             {
                 mavArray[6 + i] = datArray[i]; //7. msg data (up to 255 bytes)
                 mavArrPtr = 6 + i;
             }
 
-            mavArray[1] = mavArray.Length;      //2. whole packet length (excluding FE marker)
+            mavArray[1] = mavArrPtr - 1;      //2. whole packet length (excluding FE marker and CRC)
 
-            for (int i = 0; i < mavArray.Length; i++)
+            for (int i = 0; i < mavArrPtr; i++)
             {
                 updateMAVcrc(mavArray[i]);
             }
-            finishMAVcrc(mavArray[5]);
-            mavArray[mavArrPtr] = mavCRC;
+            finishMAVcrc(mavArray[5]);//8. mavlink crc
+            if (cbMAVcrclen.Checked)
+            {
+                if (cbMAVlsb.Checked)
+                {
+                    mavArray[mavArrPtr] = (mavCRC & 0xFF);
+                    mavArray[mavArrPtr + 1] = (mavCRC >> 8);
+                    mavArrPtr++;
+                }
+                else
+                {
+                    mavArray[mavArrPtr] = (mavCRC >> 8);
+                    mavArray[mavArrPtr + 1] = (mavCRC & 0xFF);
+                    mavArrPtr++;
+                }
+            }
+            else
+            {
+                mavArray[mavArrPtr] = mavCRC; //8. mavlink crc
+            }
+
             tbMAVcrc.Text = mavArray[mavArrPtr].ToString();
-            //8. mavlink crc
+            tbMAVdat.Clear();
+            for (int i = 0; i <= mavArrPtr; i++)
+            {
+                tbMAVdat.AppendText(mavArray[i].ToString() + "\n");
+            }
 
 
         }
@@ -1652,7 +1702,14 @@ namespace GeekBrain
             data = data & 0xFF; //cast because we want an unsigned type
             tmp = data ^ (mavCRC & 0xFF);// & 0xFF);
             tmp ^= (tmp << 4) & 0xFF;
-            mavCRC = ((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF);
+            if (cbMAVcrclen.Checked)
+            {
+                mavCRC = (((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF))/*&0xFF;//if one byte needed, uncomment this*/;
+            }
+            else
+            {
+                mavCRC = (((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF))&0xFF;//if one byte needed, uncomment this;
+            }
         }
         public void finishMAVcrc(int magic)
         {
@@ -1766,6 +1823,27 @@ namespace GeekBrain
 
             e.Handled = true;
 
+        }
+
+        private void cbMAVcrclen_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cbMAVcrclen.Checked)
+            {
+                cbMAVlsb.Visible = true;
+            }
+            else
+            {
+                cbMAVlsb.Visible = false;
+            }
+        }
+
+        private void btnMAVclr_Click(object sender, EventArgs e)
+        {
+            tbMAVdat.Clear();
+            tbMAVcrc.Clear();
+            tbMAVmsgid.Clear();
+            tbMAVperid.Clear();
+            tbMAVsysid.Clear();
         }
     }
 }
