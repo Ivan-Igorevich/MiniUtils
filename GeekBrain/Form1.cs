@@ -1708,7 +1708,7 @@ namespace GeekBrain
                 {
                     updateMAVcrc(datArray[i]);
                 }
-                finishMAVcrc(datArray[2]);//8. mavlink crc
+                finishMAVcrc(MAVlinkMagic[datArray[2]]);//8. mavlink crc
                 //usedLength++;
                 datArray[usedLength] = mavCRC; //8. mavlink crc
                 tbMAVcrc.Text = datArray[usedLength + 1].ToString();
