@@ -15,7 +15,7 @@ namespace GeekBrain
     public partial class MainForm : Form
     {
         bool RuEng = true;
-        int mavCRC;
+        int mavCRC = 255;
         Random rnd;
         char[] SpecialChars = new char[] {'~','`','!','@','#','$','%','^','&','*','(',')','-','_','=','+',';',':','"','/','?','.','>','<'};
         Dictionary<string, double> metric;
@@ -1658,8 +1658,8 @@ namespace GeekBrain
                 mavArray[6 + i] = datArray[i]; //7. msg data (up to 255 bytes)
                 mavArrPtr = 6 + i;
             }
-
-            mavArray[1] = mavArrPtr - 1;      //2. whole packet length (excluding FE marker and CRC)
+            mavArrPtr++;
+            mavArray[1] = datTemp.Length;      //2. whole packet length (excluding FE marker and CRC)
 
             for (int i = 0; i < mavArrPtr; i++)
             {
@@ -1844,6 +1844,7 @@ namespace GeekBrain
             tbMAVmsgid.Clear();
             tbMAVperid.Clear();
             tbMAVsysid.Clear();
+            mavCRC = 255;
         }
     }
 }
