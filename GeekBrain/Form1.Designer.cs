@@ -142,6 +142,7 @@
             this.btnShiftRight = new System.Windows.Forms.Button();
             this.btnShiftLeft = new System.Windows.Forms.Button();
             this.tmrPing = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -349,6 +350,7 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.button1);
             this.tabPage9.Controls.Add(this.btnMAVclr);
             this.tabPage9.Controls.Add(this.cbMAVlsb);
             this.tabPage9.Controls.Add(this.cbMAVcrclen);
@@ -377,12 +379,12 @@
             // 
             // btnMAVclr
             // 
-            this.btnMAVclr.Location = new System.Drawing.Point(202, 154);
+            this.btnMAVclr.Location = new System.Drawing.Point(191, 154);
             this.btnMAVclr.Margin = new System.Windows.Forms.Padding(2);
             this.btnMAVclr.Name = "btnMAVclr";
-            this.btnMAVclr.Size = new System.Drawing.Size(36, 42);
+            this.btnMAVclr.Size = new System.Drawing.Size(47, 20);
             this.btnMAVclr.TabIndex = 20;
-            this.btnMAVclr.Text = "CLR!";
+            this.btnMAVclr.Text = "CLR";
             this.btnMAVclr.UseVisualStyleBackColor = true;
             this.btnMAVclr.Click += new System.EventHandler(this.btnMAVclr_Click);
             // 
@@ -422,22 +424,22 @@
             // rbMAVrow
             // 
             this.rbMAVrow.AutoSize = true;
-            this.rbMAVrow.Checked = true;
             this.rbMAVrow.Location = new System.Drawing.Point(191, 131);
             this.rbMAVrow.Name = "rbMAVrow";
             this.rbMAVrow.Size = new System.Drawing.Size(47, 17);
             this.rbMAVrow.TabIndex = 16;
-            this.rbMAVrow.TabStop = true;
             this.rbMAVrow.Text = "Row";
             this.rbMAVrow.UseVisualStyleBackColor = true;
             // 
             // rbMAVcol
             // 
             this.rbMAVcol.AutoSize = true;
+            this.rbMAVcol.Checked = true;
             this.rbMAVcol.Location = new System.Drawing.Point(145, 131);
             this.rbMAVcol.Name = "rbMAVcol";
             this.rbMAVcol.Size = new System.Drawing.Size(40, 17);
             this.rbMAVcol.TabIndex = 15;
+            this.rbMAVcol.TabStop = true;
             this.rbMAVcol.Text = "Col";
             this.rbMAVcol.UseVisualStyleBackColor = true;
             // 
@@ -507,7 +509,7 @@
             // 
             this.btnMAVcalc.Location = new System.Drawing.Point(119, 154);
             this.btnMAVcalc.Name = "btnMAVcalc";
-            this.btnMAVcalc.Size = new System.Drawing.Size(78, 42);
+            this.btnMAVcalc.Size = new System.Drawing.Size(67, 42);
             this.btnMAVcalc.TabIndex = 6;
             this.btnMAVcalc.Text = "Calculate!";
             this.btnMAVcalc.UseVisualStyleBackColor = true;
@@ -564,7 +566,7 @@
             this.tbMAVdat.Name = "tbMAVdat";
             this.tbMAVdat.Size = new System.Drawing.Size(100, 166);
             this.tbMAVdat.TabIndex = 0;
-            this.tbMAVdat.Text = "0";
+            this.tbMAVdat.Text = "170\r\n204\r\n1\r\n1\r\n1\r\n0\r\n0";
             this.tbMAVdat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMAVdat_KeyPress);
             // 
             // tabPage8
@@ -1357,6 +1359,16 @@
             this.tmrPing.Interval = 1200;
             this.tmrPing.Tick += new System.EventHandler(this.tmrPing_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(192, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(46, 20);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Man";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1515,6 +1527,7 @@
         private System.Windows.Forms.CheckBox cbMAVcrclen;
         private System.Windows.Forms.CheckBox cbMAVlsb;
         private System.Windows.Forms.Button btnMAVclr;
+        private System.Windows.Forms.Button button1;
     }
 }
 

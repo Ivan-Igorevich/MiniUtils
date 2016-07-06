@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GeekBrain.exe" size="97792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GeekBrain.exe" size="98816">
       <assemblyIdentity name="GeekBrain" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UA7rV1odwHQ8IgoZ9DRL6BsXcOhLYrlJN7+z/NLOvX4=</dsig:DigestValue>
+        <dsig:DigestValue>LHh7IK7XKNZ0wMRbi1GgjHNTrH6ueAh9G8fKEtISCug=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
