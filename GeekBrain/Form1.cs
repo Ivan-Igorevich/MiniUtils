@@ -1725,8 +1725,8 @@ namespace GeekBrain
                     }
                 }
 
-        }
-            
+            }
+            mavCRC = 255;
 
 
         }
