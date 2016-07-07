@@ -38,3 +38,7 @@ C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.manifest
 C:\SmartGit\bin\MiniUtils\GeekBrain\bin\Debug\GeekBrain.application
 C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe.manifest
 C:\SmartGit\bin\MiniUtils\GeekBrain\obj\Debug\GeekBrain.application
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.manifest
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.application
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe.manifest
+C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.application

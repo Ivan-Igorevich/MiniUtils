@@ -15,6 +15,9 @@ namespace GeekBrain
     public partial class MainForm : Form
     {
         bool RuEng = true;
+        int iPingAll = 0;
+        int iPingOk = 0;
+        int mavCRC = 255;
         Random rnd;
         char[] SpecialChars = new char[] {'~','`','!','@','#','$','%','^','&','*','(',')','-','_','=','+',';',':','"','/','?','.','>','<'};
         Dictionary<string, double> metric;
@@ -40,6 +43,8 @@ namespace GeekBrain
         string cptKG = "Something went wrong!";
         string msgNpaste = "Check your internet connection, please";
         string cptNpaste = "Can't access Pastebin!";
+        string str_tt_btnMAVcalc = "Be sure to use properly tuned list of data\n and make a MAVlink byte sequence";
+        string str_tt_tbMAVdat = "To fill this list:\n - be sure to use numbers;\n - be sure numbers are less than 256;\n - be sure to enter one number per row;\n - again be sure to use numbers only!";
 
         public MainForm()
         {
@@ -58,6 +63,18 @@ namespace GeekBrain
             metric.Add("км", 1000000);
             metric.Add("mil", 1609344);
             metric.Add("мили", 1609344);
+
+            ToolTip ttMain = new ToolTip();
+            // Set up the delays for the ToolTip.
+            ttMain.AutoPopDelay = 5000;
+            ttMain.InitialDelay = 500;
+            ttMain.ReshowDelay = 100;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            ttMain.ShowAlways = true;
+
+            // Set up the ToolTip texts here.
+            ttMain.SetToolTip(this.btnMAVcalc, str_tt_btnMAVcalc);
+            ttMain.SetToolTip(this.tbMAVdat, str_tt_tbMAVdat);
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -904,7 +921,9 @@ namespace GeekBrain
                 btnPingLoc.Enabled = true;
             }
             pingGoEn = !pingGoEn;
-
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void btnPingLoc_Click(object sender, EventArgs e)
@@ -914,6 +933,7 @@ namespace GeekBrain
             {
                 tmrPing.Enabled = true;
                 btnPing.Enabled = false;
+
             }
             else
             {
@@ -921,6 +941,9 @@ namespace GeekBrain
                 btnPing.Enabled = true;
             }
             pingLoEn = !pingLoEn;
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void tmrPing_Tick(object sender, EventArgs e)
@@ -932,8 +955,10 @@ namespace GeekBrain
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             int timeout = 700;
             PingReply reply = pingSender.Send(pingIP, timeout, buffer, options);
+            iPingAll++;
             if (reply.Status == IPStatus.Success)
             {
+                iPingOk++;
                 rtbPing.Text = (DateTime.Now.ToLongTimeString() + ": " + String.Format(pingRespond, reply.Address.ToString(), reply.RoundtripTime, reply.Options.Ttl)) + rtbPing.Text;
             }
             else if(reply.Status == IPStatus.TimedOut)
@@ -944,6 +969,7 @@ namespace GeekBrain
             {
                 rtbPing.Text = DateTime.Now.ToLongTimeString() + ": " + pingFailNA + rtbPing.Text;
             }
+            lblPingPrecent.Text = Convert.ToString((iPingOk * 100) / iPingAll) + "%";
         }
 
         private void tbShiftDisplay_KeyPress(object sender, KeyPressEventArgs e)
@@ -1058,6 +1084,9 @@ namespace GeekBrain
             {
                 tmrPing.Enabled = true;
             }
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void tbPingA1_TextChanged(object sender, EventArgs e)
@@ -1556,6 +1585,330 @@ namespace GeekBrain
             reader.Close();
             dataStream.Close();
             response.Close();
+        }
+
+        private void btnMAVcalc_Click(object sender, EventArgs e)
+        {
+            int[] mavArray = new int[511];
+            int mavArrPtr = 0;
+            int usedLength = 0;
+            int[] datArray = new int[511];
+            string[] datTemp = new string[255];
+            int[] MAVlinkMagic = new int[256] {
+                50, 124, 137, 0, 237, 217, 104, 119,
+                0, 0, 0, 89, 0, 0, 0, 0,
+                0, 0, 0, 0, 214, 159, 220, 168,
+                24, 23, 170, 144, 67, 115, 39, 246,
+                185, 104, 237, 244, 222, 212, 9, 254,
+                230, 28, 28, 132, 221, 232, 11, 153,
+                41, 39, 214, 223, 141, 33, 15, 3,
+                100, 24, 239, 238, 30, 240, 183, 130,
+                130, 118, 148, 21, 0, 243, 124, 0,
+                0, 0, 20, 0, 152, 143, 0, 0,
+                127, 106, 0, 0, 0, 0, 0, 0,
+                0, 231, 183, 63, 54, 0, 0, 0,
+                0, 0, 0, 0, 175, 102, 158, 208,
+                56, 93, 211, 108, 32, 185, 235, 93,
+                124, 124, 119, 4, 76, 128, 56, 116,
+                134, 237, 203, 250, 87, 203, 220, 0,
+                0, 0, 29, 223, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 177, 241, 15, 134, 219,
+                208, 188, 84, 22, 19, 21, 134, 0,
+                78, 68, 189, 127, 111, 21, 21, 144,
+                1, 234, 73, 181, 22, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 204, 49, 170, 44, 83, 46, 0
+            };
+            if (tbMAVdat.Text != "")
+            {
+                datTemp = tbMAVdat.Text.Split('\n');
+            }
+            if (datTemp[datTemp.Length-1]=="")
+            {
+                usedLength = datTemp.Length - 1;
+            }
+            else
+            {
+                usedLength = datTemp.Length;
+            }
+            for (int i = 0; i < usedLength; i++)
+            {
+                try
+                {
+                    datArray[i] = Convert.ToInt32(datTemp[i]);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                }
+            }
+
+            if (lblMAVsysid.Visible == true)
+            {
+                try
+                {
+                    mavArray[0] = 0xFE;         //1. FE
+                    mavArray[2] = Convert.ToInt32(nudMAVnum.Value); //3. msg num
+                    mavArray[3] = Convert.ToInt32(tbMAVsysid.Text); //4. system id
+                    mavArray[4] = Convert.ToInt32(tbMAVperid.Text); //5. peripheral id
+                    mavArray[5] = Convert.ToInt32(tbMAVmsgid.Text); //6. msg id (MAGIC NUMBER INDEX)
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                }
+
+                for (int i = 0; i < usedLength; i++)
+                {
+                    mavArray[6 + i] = datArray[i]; //7. msg data (up to 255 bytes)
+                    mavArrPtr = 6 + i;
+                }
+                mavArrPtr++;
+                mavArray[1] = datTemp.Length;      //2. whole packet length (excluding FE marker and CRC)
+
+                for (int i = 0; i < mavArrPtr; i++)
+                {
+                    updateMAVcrc(mavArray[i]);
+                }
+                finishMAVcrc(mavArray[5]);//8. mavlink crc
+                if (cbMAVcrclen.Checked)
+                {
+                    if (cbMAVlsb.Checked)
+                    {
+                        mavArray[mavArrPtr] = (mavCRC & 0xFF);
+                        mavArray[mavArrPtr + 1] = (mavCRC >> 8);
+                        mavArrPtr++;
+                    }
+                    else
+                    {
+                        mavArray[mavArrPtr] = (mavCRC >> 8);
+                        mavArray[mavArrPtr + 1] = (mavCRC & 0xFF);
+                        mavArrPtr++;
+                    }
+                }
+                else
+                {
+                    mavArray[mavArrPtr] = mavCRC; //8. mavlink crc
+                }
+
+                tbMAVcrc.Text = mavArray[mavArrPtr].ToString();
+                tbMAVdat.Clear();
+                for (int i = 0; i <= mavArrPtr; i++)
+                {
+                    if (rbMAVcol.Checked)
+                    {
+                        tbMAVdat.AppendText(mavArray[i].ToString() + "\n");
+                    }
+                    else
+                    {
+                        tbMAVdat.AppendText(mavArray[i].ToString() + ", ");
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < usedLength; i++)
+                {
+                    updateMAVcrc(datArray[i]);
+                }
+                finishMAVcrc(MAVlinkMagic[datArray[2]]);//8. mavlink crc
+                //usedLength++;
+                datArray[usedLength] = mavCRC; //8. mavlink crc
+                tbMAVcrc.Text = datArray[usedLength + 1].ToString();
+                tbMAVdat.Clear();
+                for (int i = 0; i <= usedLength; i++)
+                {
+                    if (rbMAVcol.Checked)
+                    {
+                        tbMAVdat.AppendText(datArray[i].ToString() + "\n");
+                    }
+                    else
+                    {
+                        tbMAVdat.AppendText(datArray[i].ToString() + ", ");
+                    }
+                }
+
+            }
+            mavCRC = 255;
+
+
+        }
+
+        public void updateMAVcrc(int data)
+        {
+            int tmp;
+            data = data & 0xFF; //cast because we want an unsigned type
+            tmp = data ^ (mavCRC & 0xFF);// & 0xFF);
+            tmp ^= (tmp << 4) & 0xFF;
+            if (cbMAVcrclen.Checked)
+            {
+                mavCRC = (((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF))/*&0xFF;//if one byte needed, uncomment this*/;
+            }
+            else
+            {
+                mavCRC = (((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF))&0xFF;//if one byte needed, uncomment this;
+            }
+        }
+        public void finishMAVcrc(int magic)
+        {
+            updateMAVcrc(magic);
+        }
+
+        private void tbMAVsysid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVsysid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVsysid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVsysid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVsysid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVsysid.Text = "0";
+            }
+        }
+
+        private void tbMAVperid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVperid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVperid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVperid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVperid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVperid.Text = "0";
+            }
+        }
+
+        private void tbMAVmsgid_TextChanged(object sender, EventArgs e)
+        {
+            int a;
+            if (tbMAVmsgid.Text != "")
+            {
+                try
+                {
+                    a = Convert.ToInt16(tbMAVmsgid.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    tbMAVmsgid.Text = "0";
+                    a = 0;
+                }
+            }
+            else
+            {
+                a = 0;
+                tbMAVmsgid.Text = "0";
+            }
+
+            if (a > 255)
+            {
+                tbMAVmsgid.Text = "0";
+            }
+        }
+
+        private void tbMAVdat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int a;
+            try
+            {
+                a = Convert.ToInt16(e.KeyChar.ToString());
+                tbMAVdat.AppendText(a.ToString());
+            }
+            catch (Exception)
+            {
+                a = 0;
+                if (e.KeyChar.ToString() != "\r")
+                {
+                    MessageBox.Show(crcMsgBody, crcMsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                }
+                else
+                {
+                    tbMAVdat.AppendText("\r\n");
+                }
+            }
+
+            e.Handled = true;
+
+        }
+
+        private void cbMAVcrclen_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cbMAVcrclen.Checked)
+            {
+                cbMAVlsb.Visible = true;
+            }
+            else
+            {
+                cbMAVlsb.Visible = false;
+            }
+        }
+
+        private void btnMAVclr_Click(object sender, EventArgs e)
+        {
+            tbMAVdat.Clear();
+            tbMAVcrc.Clear();
+            tbMAVmsgid.Clear();
+            tbMAVperid.Clear();
+            tbMAVsysid.Clear();
+            mavCRC = 255;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tbMAVcrc.Visible = false;
+            tbMAVmsgid.Visible = false;
+            tbMAVperid.Visible = false;
+            tbMAVsysid.Visible = false;
+            nudMAVnum.Visible = false;
+            lblMAVcrc.Visible = false;
+            lblMAVmsgid.Visible = false;
+            lblMAVnum.Visible = false;
+            lblMAVperid.Visible = false;
+            lblMAVsysid.Visible = false;
+            cbMAVcrclen.Visible = false;
         }
     }
 }
