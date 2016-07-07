@@ -52,6 +52,7 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnMAVclr = new System.Windows.Forms.Button();
             this.cbMAVlsb = new System.Windows.Forms.CheckBox();
             this.cbMAVcrclen = new System.Windows.Forms.CheckBox();
@@ -142,7 +143,7 @@
             this.btnShiftRight = new System.Windows.Forms.Button();
             this.btnShiftLeft = new System.Windows.Forms.Button();
             this.tmrPing = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblPingPrecent = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -376,6 +377,16 @@
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "MAVlink";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(192, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(46, 20);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Man";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnMAVclr
             // 
@@ -646,6 +657,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.lblPingPrecent);
             this.tabPage7.Controls.Add(this.btnPingCustom);
             this.tabPage7.Controls.Add(this.tbPingA4);
             this.tabPage7.Controls.Add(this.tbPingA3);
@@ -1359,15 +1371,14 @@
             this.tmrPing.Interval = 1200;
             this.tmrPing.Tick += new System.EventHandler(this.tmrPing_Tick);
             // 
-            // button1
+            // lblPingPrecent
             // 
-            this.button1.Location = new System.Drawing.Point(192, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(46, 20);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Man";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lblPingPrecent.AutoSize = true;
+            this.lblPingPrecent.Location = new System.Drawing.Point(213, 191);
+            this.lblPingPrecent.Name = "lblPingPrecent";
+            this.lblPingPrecent.Size = new System.Drawing.Size(33, 13);
+            this.lblPingPrecent.TabIndex = 8;
+            this.lblPingPrecent.Text = "100%";
             // 
             // MainForm
             // 
@@ -1528,6 +1539,7 @@
         private System.Windows.Forms.CheckBox cbMAVlsb;
         private System.Windows.Forms.Button btnMAVclr;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblPingPrecent;
     }
 }
 

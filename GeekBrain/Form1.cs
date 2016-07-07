@@ -15,6 +15,8 @@ namespace GeekBrain
     public partial class MainForm : Form
     {
         bool RuEng = true;
+        int iPingAll = 0;
+        int iPingOk = 0;
         int mavCRC = 255;
         Random rnd;
         char[] SpecialChars = new char[] {'~','`','!','@','#','$','%','^','&','*','(',')','-','_','=','+',';',':','"','/','?','.','>','<'};
@@ -919,7 +921,9 @@ namespace GeekBrain
                 btnPingLoc.Enabled = true;
             }
             pingGoEn = !pingGoEn;
-
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void btnPingLoc_Click(object sender, EventArgs e)
@@ -929,6 +933,7 @@ namespace GeekBrain
             {
                 tmrPing.Enabled = true;
                 btnPing.Enabled = false;
+
             }
             else
             {
@@ -936,6 +941,9 @@ namespace GeekBrain
                 btnPing.Enabled = true;
             }
             pingLoEn = !pingLoEn;
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void tmrPing_Tick(object sender, EventArgs e)
@@ -947,8 +955,10 @@ namespace GeekBrain
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             int timeout = 700;
             PingReply reply = pingSender.Send(pingIP, timeout, buffer, options);
+            iPingAll++;
             if (reply.Status == IPStatus.Success)
             {
+                iPingOk++;
                 rtbPing.Text = (DateTime.Now.ToLongTimeString() + ": " + String.Format(pingRespond, reply.Address.ToString(), reply.RoundtripTime, reply.Options.Ttl)) + rtbPing.Text;
             }
             else if(reply.Status == IPStatus.TimedOut)
@@ -959,6 +969,7 @@ namespace GeekBrain
             {
                 rtbPing.Text = DateTime.Now.ToLongTimeString() + ": " + pingFailNA + rtbPing.Text;
             }
+            lblPingPrecent.Text = Convert.ToString((iPingOk * 100) / iPingAll) + "%";
         }
 
         private void tbShiftDisplay_KeyPress(object sender, KeyPressEventArgs e)
@@ -1073,6 +1084,9 @@ namespace GeekBrain
             {
                 tmrPing.Enabled = true;
             }
+            iPingAll = 0;
+            iPingOk = 0;
+            lblPingPrecent.Text = "100%";
         }
 
         private void tbPingA1_TextChanged(object sender, EventArgs e)
