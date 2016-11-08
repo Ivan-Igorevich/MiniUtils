@@ -80,6 +80,7 @@
             this.lblMTSCaption = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.lblPingPrecent = new System.Windows.Forms.Label();
             this.btnPingCustom = new System.Windows.Forms.Button();
             this.tbPingA4 = new System.Windows.Forms.TextBox();
             this.tbPingA3 = new System.Windows.Forms.TextBox();
@@ -143,7 +144,7 @@
             this.btnShiftRight = new System.Windows.Forms.Button();
             this.btnShiftLeft = new System.Windows.Forms.Button();
             this.tmrPing = new System.Windows.Forms.Timer(this.components);
-            this.lblPingPrecent = new System.Windows.Forms.Label();
+            this.tsmiUpsideDown = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -217,7 +218,8 @@
             this.toolStripMenuItem3,
             this.tsmiNpSave,
             this.tsmiNpLoad,
-            this.pastebinItToolStripMenuItem});
+            this.pastebinItToolStripMenuItem,
+            this.tsmiUpsideDown});
             this.notepadToolStripMenuItem.Enabled = false;
             this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
             this.notepadToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
@@ -227,7 +229,7 @@
             // 
             this.tsmiNpInsDate.Name = "tsmiNpInsDate";
             this.tsmiNpInsDate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D)));
-            this.tsmiNpInsDate.Size = new System.Drawing.Size(173, 22);
+            this.tsmiNpInsDate.Size = new System.Drawing.Size(186, 22);
             this.tsmiNpInsDate.Text = "Insert date";
             this.tsmiNpInsDate.Click += new System.EventHandler(this.tsmiNpInsDate_Click);
             // 
@@ -235,33 +237,33 @@
             // 
             this.tsmiNpInsTime.Name = "tsmiNpInsTime";
             this.tsmiNpInsTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.tsmiNpInsTime.Size = new System.Drawing.Size(173, 22);
+            this.tsmiNpInsTime.Size = new System.Drawing.Size(186, 22);
             this.tsmiNpInsTime.Text = "Insert time";
             this.tsmiNpInsTime.Click += new System.EventHandler(this.tsmiNpInsTime_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(183, 6);
             // 
             // tsmiNpPaste
             // 
             this.tsmiNpPaste.Name = "tsmiNpPaste";
             this.tsmiNpPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.tsmiNpPaste.Size = new System.Drawing.Size(173, 22);
+            this.tsmiNpPaste.Size = new System.Drawing.Size(186, 22);
             this.tsmiNpPaste.Text = "Paste";
             this.tsmiNpPaste.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(170, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(183, 6);
             // 
             // tsmiNpSave
             // 
             this.tsmiNpSave.Name = "tsmiNpSave";
             this.tsmiNpSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiNpSave.Size = new System.Drawing.Size(173, 22);
+            this.tsmiNpSave.Size = new System.Drawing.Size(186, 22);
             this.tsmiNpSave.Text = "Save";
             this.tsmiNpSave.Click += new System.EventHandler(this.tsmiNpSave_Click);
             // 
@@ -269,7 +271,7 @@
             // 
             this.tsmiNpLoad.Name = "tsmiNpLoad";
             this.tsmiNpLoad.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.tsmiNpLoad.Size = new System.Drawing.Size(173, 22);
+            this.tsmiNpLoad.Size = new System.Drawing.Size(186, 22);
             this.tsmiNpLoad.Text = "Load";
             this.tsmiNpLoad.Click += new System.EventHandler(this.tsmiNpLoad_Click);
             // 
@@ -277,7 +279,7 @@
             // 
             this.pastebinItToolStripMenuItem.Name = "pastebinItToolStripMenuItem";
             this.pastebinItToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
-            this.pastebinItToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.pastebinItToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.pastebinItToolStripMenuItem.Text = "Pastebin It!";
             this.pastebinItToolStripMenuItem.Click += new System.EventHandler(this.pastebinItToolStripMenuItem_Click);
             // 
@@ -675,6 +677,15 @@
             this.tabPage7.UseVisualStyleBackColor = true;
             this.tabPage7.Enter += new System.EventHandler(this.tabPage7_Enter);
             this.tabPage7.Leave += new System.EventHandler(this.tabPage7_Leave);
+            // 
+            // lblPingPrecent
+            // 
+            this.lblPingPrecent.AutoSize = true;
+            this.lblPingPrecent.Location = new System.Drawing.Point(213, 191);
+            this.lblPingPrecent.Name = "lblPingPrecent";
+            this.lblPingPrecent.Size = new System.Drawing.Size(33, 13);
+            this.lblPingPrecent.TabIndex = 8;
+            this.lblPingPrecent.Text = "100%";
             // 
             // btnPingCustom
             // 
@@ -1371,14 +1382,13 @@
             this.tmrPing.Interval = 1200;
             this.tmrPing.Tick += new System.EventHandler(this.tmrPing_Tick);
             // 
-            // lblPingPrecent
+            // tsmiUpsideDown
             // 
-            this.lblPingPrecent.AutoSize = true;
-            this.lblPingPrecent.Location = new System.Drawing.Point(213, 191);
-            this.lblPingPrecent.Name = "lblPingPrecent";
-            this.lblPingPrecent.Size = new System.Drawing.Size(33, 13);
-            this.lblPingPrecent.TabIndex = 8;
-            this.lblPingPrecent.Text = "100%";
+            this.tsmiUpsideDown.Name = "tsmiUpsideDown";
+            this.tsmiUpsideDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.tsmiUpsideDown.Size = new System.Drawing.Size(186, 22);
+            this.tsmiUpsideDown.Text = "Upside Down";
+            this.tsmiUpsideDown.Click += new System.EventHandler(this.tsmiUpsideDown_Click);
             // 
             // MainForm
             // 
@@ -1540,6 +1550,7 @@
         private System.Windows.Forms.Button btnMAVclr;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblPingPrecent;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUpsideDown;
     }
 }
 

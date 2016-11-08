@@ -1536,7 +1536,6 @@ namespace GeekBrain
             Clipboard.SetText(tbMTSout.Text);
         }
 
-
         private void pastebinItToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //            string devkey = "f551e54a1945de2cd8725def17729ca3";
@@ -1760,6 +1759,7 @@ namespace GeekBrain
                 mavCRC = (((mavCRC >> 8) & 0xFF) ^ (tmp << 8) ^ (tmp << 3) ^ ((tmp >> 4) & 0xFF))&0xFF;//if one byte needed, uncomment this;
             }
         }
+		
         public void finishMAVcrc(int magic)
         {
             updateMAVcrc(magic);
@@ -1909,6 +1909,19 @@ namespace GeekBrain
             lblMAVperid.Visible = false;
             lblMAVsysid.Visible = false;
             cbMAVcrclen.Visible = false;
+        }
+
+        private void tsmiUpsideDown_Click(object sender, EventArgs e)
+        {
+            String npUD = rtbNpOut.Text;
+            String[] npAr;
+            npAr = npUD.Split('\n');
+            rtbNpOut.Text = "";
+            for (int i = npAr.Length-1; i > 0; i--)
+            {
+                rtbNpOut.AppendText(npAr[i] + "\r\n");
+            }
+            rtbNpOut.AppendText(npAr[0]);
         }
     }
 }

@@ -42,3 +42,16 @@ C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.ex
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\bin\Debug\GeekBrain.application
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe.manifest
 C:\Users\IvanIgorevich\Dropbox\SDU MT\MiniUtils\GeekBrain\obj\Debug\GeekBrain.application
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.config
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.pdb
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe.manifest
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\bin\Debug\GeekBrain.application
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\bin\Debug\GeekBrain.exe
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\bin\Debug\GeekBrain.pdb
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csprojResolveAssemblyReference.cache
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.MainForm.resources
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.Properties.Resources.resources
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.csproj.GenerateResource.Cache
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.exe.manifest
+C:\Users\IvanIgorevich\Desktop\OneDrive\Work\Convenience Tools\CSharp\MiniUtils\GeekBrain\obj\Debug\GeekBrain.application
